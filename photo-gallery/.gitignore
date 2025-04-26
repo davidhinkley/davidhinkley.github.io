@@ -8,7 +8,8 @@ node_modules/
 
 # Production
 /build
-/client/build
+# Commented out to allow the client build to be included in the GitHub Pages deployment
+# /client/build
 
 # Misc
 .DS_Store

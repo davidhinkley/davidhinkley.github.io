@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/photo-gallery/client/build/static/css/main.770c5c80.css",
+    "main.js": "/photo-gallery/client/build/static/js/main.b6d56a71.js",
+    "static/js/936.c199ee5d.chunk.js": "/photo-gallery/client/build/static/js/936.c199ee5d.chunk.js",
+    "static/js/6.7101f120.chunk.js": "/photo-gallery/client/build/static/js/6.7101f120.chunk.js",
+    "static/js/327.3c922db4.chunk.js": "/photo-gallery/client/build/static/js/327.3c922db4.chunk.js",
+    "static/js/86.3a9c7329.chunk.js": "/photo-gallery/client/build/static/js/86.3a9c7329.chunk.js",
+    "static/js/66.133664a0.chunk.js": "/photo-gallery/client/build/static/js/66.133664a0.chunk.js",
+    "static/js/390.7c6bbb8d.chunk.js": "/photo-gallery/client/build/static/js/390.7c6bbb8d.chunk.js",
+    "static/js/122.792a622b.chunk.js": "/photo-gallery/client/build/static/js/122.792a622b.chunk.js",
+    "static/js/934.919ec83f.chunk.js": "/photo-gallery/client/build/static/js/934.919ec83f.chunk.js",
+    "static/js/199.69566072.chunk.js": "/photo-gallery/client/build/static/js/199.69566072.chunk.js",
+    "static/js/813.6303fb3b.chunk.js": "/photo-gallery/client/build/static/js/813.6303fb3b.chunk.js",
+    "static/media/GradoGradooNF.ttf": "/photo-gallery/client/build/static/media/GradoGradooNF.d3e473e0560624a768dc.ttf",
+    "index.html": "/photo-gallery/client/build/index.html",
+    "main.770c5c80.css.map": "/photo-gallery/client/build/static/css/main.770c5c80.css.map",
+    "main.b6d56a71.js.map": "/photo-gallery/client/build/static/js/main.b6d56a71.js.map",
+    "936.c199ee5d.chunk.js.map": "/photo-gallery/client/build/static/js/936.c199ee5d.chunk.js.map",
+    "6.7101f120.chunk.js.map": "/photo-gallery/client/build/static/js/6.7101f120.chunk.js.map",
+    "327.3c922db4.chunk.js.map": "/photo-gallery/client/build/static/js/327.3c922db4.chunk.js.map",
+    "86.3a9c7329.chunk.js.map": "/photo-gallery/client/build/static/js/86.3a9c7329.chunk.js.map",
+    "66.133664a0.chunk.js.map": "/photo-gallery/client/build/static/js/66.133664a0.chunk.js.map",
+    "390.7c6bbb8d.chunk.js.map": "/photo-gallery/client/build/static/js/390.7c6bbb8d.chunk.js.map",
+    "122.792a622b.chunk.js.map": "/photo-gallery/client/build/static/js/122.792a622b.chunk.js.map",
+    "934.919ec83f.chunk.js.map": "/photo-gallery/client/build/static/js/934.919ec83f.chunk.js.map",
+    "199.69566072.chunk.js.map": "/photo-gallery/client/build/static/js/199.69566072.chunk.js.map",
+    "813.6303fb3b.chunk.js.map": "/photo-gallery/client/build/static/js/813.6303fb3b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.770c5c80.css",
+    "static/js/main.b6d56a71.js"
+  ]
+}

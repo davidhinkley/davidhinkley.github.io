@@ -1,0 +1,33 @@
+In addition to this ubunt 24.04 desktop I'm creating my project on mostly at home, I have an ubuntu 2404 VPS. 
+
+I got this:
+
+VPS info:
+
+Username: davidssh
+
+Password: <password-entered-during-signup>
+
+IPv4: 64.62.199.198
+
+IPv6: 2001:470:1:1ee::130
+
+SSH Port: 22
+
+Memory: 2 GB
+
+CPUs: 2
+
+Storage: 50 GB
+
+OS: Ubuntu24
+
+Domain: vps130.heliohost.us
+
+and
+
+Fastpanel info:
+
+Congratulations! FASTPANEL successfully installed and available now for you at https://64.62.199.198:8888/ .
+
+Login: fastuser

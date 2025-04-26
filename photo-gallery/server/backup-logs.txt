@@ -1,0 +1,60 @@
+[2025-04-09T06:00:01.648Z] Starting scheduled backup...
+[2025-04-09T06:00:01.896Z] Backup created successfully: /home/david/Experimenting/Image_Gallery/photo-gallery/server/backups/2025-04-09T06-00-01-649Z_scheduled.zip
+[2025-04-09T06:00:01.897Z] Scheduled backup completed successfully
+[2025-04-10T06:00:01.568Z] Starting scheduled backup...
+[2025-04-10T06:00:02.104Z] Backup created successfully: /home/david/Experimenting/Image_Gallery/photo-gallery/server/backups/2025-04-10T06-00-01-568Z_scheduled.zip
+[2025-04-10T06:00:02.116Z] Scheduled backup completed successfully
+[2025-04-11T06:00:01.605Z] Starting scheduled backup...
+[2025-04-11T06:00:02.252Z] Backup created successfully: /home/david/Experimenting/Image_Gallery/photo-gallery/server/backups/2025-04-11T06-00-01-606Z_scheduled.zip
+[2025-04-11T06:00:02.255Z] Scheduled backup completed successfully
+[2025-04-12T06:00:01.414Z] Starting scheduled backup...
+[2025-04-12T06:00:02.032Z] Backup created successfully: /home/david/Experimenting/Image_Gallery/photo-gallery/server/backups/2025-04-12T06-00-01-415Z_scheduled.zip
+[2025-04-12T06:00:02.035Z] Scheduled backup completed successfully
+[2025-04-13T06:00:01.947Z] Starting scheduled backup...
+[2025-04-13T06:00:02.233Z] Backup created successfully: /home/david/Experimenting/Image_Gallery/photo-gallery/server/backups/2025-04-13T06-00-01-975Z_scheduled.zip
+[2025-04-13T06:00:02.234Z] Scheduled backup completed successfully
+[2025-04-14T06:00:01.662Z] Starting scheduled backup...
+[2025-04-14T06:00:01.934Z] Backup created successfully: /home/david/Experimenting/Image_Gallery/photo-gallery/server/backups/2025-04-14T06-00-01-663Z_scheduled.zip
+[2025-04-14T06:00:01.937Z] Scheduled backup completed successfully
+[2025-04-15T06:00:01.625Z] Starting scheduled backup...
+[2025-04-15T06:00:02.164Z] Backup created successfully: /home/david/Experimenting/Image_Gallery/photo-gallery/server/backups/2025-04-15T06-00-01-626Z_scheduled.zip
+[2025-04-15T06:00:02.177Z] Scheduled backup completed successfully
+[2025-04-16T06:00:01.865Z] Starting scheduled backup...
+[2025-04-16T06:00:02.143Z] Backup created successfully: /home/david/Experimenting/Image_Gallery/photo-gallery/server/backups/2025-04-16T06-00-01-893Z_scheduled.zip
+[2025-04-16T06:00:02.144Z] Scheduled backup completed successfully
+[2025-04-17T06:00:01.917Z] Starting scheduled backup...
+[2025-04-17T06:00:02.233Z] Backup created successfully: /home/david/Experimenting/Image_Gallery/photo-gallery/server/backups/2025-04-17T06-00-01-946Z_scheduled.zip
+[2025-04-17T06:00:02.234Z] Scheduled backup completed successfully
+[2025-04-18T06:00:01.739Z] Starting scheduled backup...
+[2025-04-18T06:00:02.186Z] Backup created successfully: /home/david/Experimenting/Image_Gallery/photo-gallery/server/backups/2025-04-18T06-00-01-774Z_scheduled.zip
+[2025-04-18T06:00:02.188Z] Scheduled backup completed successfully
+[2025-04-19T06:00:01.896Z] Starting scheduled backup...
+[2025-04-19T06:00:02.213Z] Backup created successfully: /home/david/Experimenting/Image_Gallery/photo-gallery/server/backups/2025-04-19T06-00-01-923Z_scheduled.zip
+[2025-04-19T06:00:02.215Z] Found 11 scheduled backups, keeping 10
+[2025-04-19T06:00:02.215Z] Deleting old backup: 2025-04-09T06-00-01-649Z_scheduled.zip
+[2025-04-19T06:00:02.215Z] Scheduled backup completed successfully
+[2025-04-20T06:00:01.759Z] Starting scheduled backup...
+[2025-04-20T06:00:02.187Z] Backup created successfully: /home/david/Experimenting/Image_Gallery/photo-gallery/server/backups/2025-04-20T06-00-01-787Z_scheduled.zip
+[2025-04-20T06:00:02.188Z] Found 11 scheduled backups, keeping 10
+[2025-04-20T06:00:02.188Z] Deleting old backup: 2025-04-10T06-00-01-568Z_scheduled.zip
+[2025-04-20T06:00:02.189Z] Scheduled backup completed successfully
+[2025-04-21T06:00:01.398Z] Starting scheduled backup...
+[2025-04-21T06:00:01.710Z] Backup created successfully: /home/david/Experimenting/Image_Gallery/photo-gallery/server/backups/2025-04-21T06-00-01-399Z_scheduled.zip
+[2025-04-21T06:00:01.718Z] Found 11 scheduled backups, keeping 10
+[2025-04-21T06:00:01.718Z] Deleting old backup: 2025-04-11T06-00-01-606Z_scheduled.zip
+[2025-04-21T06:00:01.719Z] Scheduled backup completed successfully
+[2025-04-22T06:00:01.398Z] Starting scheduled backup...
+[2025-04-22T06:00:01.830Z] Backup created successfully: /home/david/Experimenting/Image_Gallery/photo-gallery/server/backups/2025-04-22T06-00-01-425Z_scheduled.zip
+[2025-04-22T06:00:01.836Z] Found 11 scheduled backups, keeping 10
+[2025-04-22T06:00:01.837Z] Deleting old backup: 2025-04-12T06-00-01-415Z_scheduled.zip
+[2025-04-22T06:00:01.838Z] Scheduled backup completed successfully
+[2025-04-23T06:00:02.192Z] Starting scheduled backup...
+[2025-04-23T06:00:02.853Z] Backup created successfully: /home/david/Experimenting/Image_Gallery/photo-gallery/server/backups/2025-04-23T06-00-02-219Z_scheduled.zip
+[2025-04-23T06:00:02.857Z] Found 11 scheduled backups, keeping 10
+[2025-04-23T06:00:02.858Z] Deleting old backup: 2025-04-13T06-00-01-975Z_scheduled.zip
+[2025-04-23T06:00:02.859Z] Scheduled backup completed successfully
+[2025-04-24T06:00:01.635Z] Starting scheduled backup...
+[2025-04-24T06:00:01.917Z] Backup created successfully: /home/david/Experimenting/Image_Gallery/photo-gallery/server/backups/2025-04-24T06-00-01-663Z_scheduled.zip
+[2025-04-24T06:00:01.919Z] Found 11 scheduled backups, keeping 10
+[2025-04-24T06:00:01.919Z] Deleting old backup: 2025-04-14T06-00-01-663Z_scheduled.zip
+[2025-04-24T06:00:01.919Z] Scheduled backup completed successfully

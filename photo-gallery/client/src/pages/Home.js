@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import PhotoGrid from '../components/photos/PhotoGrid';
+import { PhotoGridSkeleton } from '../components/ui/SkeletonLoader';
 import { useAuth } from '../context/AuthContext';
 
 const Home = () => {
-  const { currentUser } = useAuth();
+  const { currentUser, isAuthenticated } = useAuth();
   const [featuredPhotos, setFeaturedPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -13,25 +14,54 @@ const Home = () => {
     const fetchFeaturedPhotos = async () => {
       try {
         const res = await axios.get('/api/photos');
-        // Get the 8 most liked photos
-        const sorted = [...res.data].sort((a, b) => b.likes - a.likes).slice(0, 8);
-        setFeaturedPhotos(sorted);
+        
+        // Check if there are any liked photos
+        const likedPhotos = res.data.filter(photo => photo.liked);
+        
+        let photosToShow;
+        if (likedPhotos.length > 0) {
+          // If there are liked photos, only show those sorted by likes
+          photosToShow = [...likedPhotos].sort((a, b) => b.likes - a.likes);
+        } else {
+          // Otherwise, show the 8 most liked photos (current behavior)
+          photosToShow = [...res.data].sort((a, b) => b.likes - a.likes).slice(0, 8);
+        }
+        
+        setFeaturedPhotos(photosToShow);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching featured photos:', error);
         setLoading(false);
       }
     };
+    
 
     fetchFeaturedPhotos();
   }, []);
 
   const handleLike = async (id) => {
+    if (!isAuthenticated) {
+      alert('Please log in to like photos');
+      return;
+    }
+    
+    // Find the photo in our state
+    const photo = featuredPhotos.find(p => p.id === id);
+    
+    // If already liked, don't do anything
+    if (photo && photo.liked) {
+      return;
+    }
+    
     try {
       const res = await axios.post(`/api/photos/${id}/like`);
       setFeaturedPhotos(
         featuredPhotos.map((photo) =>
-          photo.id === id ? { ...photo, likes: res.data.likes } : photo
+          photo.id === id ? { 
+            ...photo, 
+            likes: res.data.likes,
+            liked: true
+          } : photo
         )
       );
     } catch (error) {
@@ -86,9 +116,7 @@ const Home = () => {
         </div>
         
         {loading ? (
-          <div className="flex justify-center py-12">
-            <div className="w-12 h-12 border-t-4 border-primary-600 border-solid rounded-full animate-spin"></div>
-          </div>
+          <PhotoGridSkeleton count={8} />
         ) : (
           <PhotoGrid 
             photos={featuredPhotos} 

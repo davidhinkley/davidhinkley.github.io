@@ -1,17 +1,10 @@
 import React from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Navbar from './components/layout/NavbarNew';
-import Home from './pages/Home';
-import Gallery from './pages/Gallery';
-import PhotoDetail from './pages/PhotoDetail';
-import Upload from './pages/Upload';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Profile from './pages/Profile';
-import PrivateRoute from './components/routing/PrivateRoute';
-import BackupManagerNew from './pages/BackupManagerNew';
+import AnimatedRoutes from './components/routing/AnimatedRoutes';
 import { useAuth } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   const { loading } = useAuth();
@@ -30,43 +23,23 @@ function App() {
         <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 dark:text-white transition-colors duration-200">
           <Navbar />
           <main className="container mx-auto px-4 py-8 flex-grow bg-gray-50 dark:bg-gray-900">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/gallery" element={<Gallery />} />
-              <Route path="/photos/:id" element={<PhotoDetail />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route 
-                path="/upload" 
-                element={
-                  <PrivateRoute>
-                    <Upload />
-                  </PrivateRoute>
-                } 
-              />
-              <Route 
-                path="/profile" 
-                element={
-                  <PrivateRoute>
-                    <Profile />
-                  </PrivateRoute>
-                } 
-              />
-              <Route 
-                path="/backups" 
-                element={
-                  <PrivateRoute>
-                    <BackupManagerNew />
-                  </PrivateRoute>
-                } 
-              />
-            </Routes>
+            <AnimatedRoutes />
           </main>
           <footer className="bg-gray-800 dark:bg-gray-950 text-white py-6 mt-auto">
             <div className="container mx-auto px-4">
-              <p className="text-center">© {new Date().getFullYear()} <span className="galleria-title">Galleria</span>. All rights reserved.</p>
+              <p className="text-center">© {new Date().getFullYear()} David Stuart Hinkley. All rights reserved.</p>
             </div>
           </footer>
+          <Toaster 
+            position="top-right"
+            toastOptions={{
+              duration: 3000,
+              style: {
+                background: '#333',
+                color: '#fff',
+              },
+            }}
+          />
         </div>
       </Router>
     </ThemeProvider>

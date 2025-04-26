@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { HeartIcon, ArrowLeftIcon, PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
+import { HeartIcon, ArrowLeftIcon, PencilIcon, TrashIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/24/solid';
 import { useAuth } from '../context/AuthContext';
+import ProgressiveImage from '../components/photos/ProgressiveImage';
+import ZoomableImage from '../components/photos/ZoomableImage';
 
 const PhotoDetail = () => {
   const { id } = useParams();
@@ -73,9 +75,23 @@ const PhotoDetail = () => {
   };
 
   const handleLike = async () => {
+    if (!isAuthenticated) {
+      alert('Please log in to like photos');
+      return;
+    }
+    
+    // If already liked, don't do anything
+    if (photo.liked) {
+      return;
+    }
+    
     try {
       const res = await axios.post(`/api/photos/${id}/like`);
-      setPhoto({ ...photo, likes: res.data.likes });
+      setPhoto({ 
+        ...photo, 
+        likes: res.data.likes,
+        liked: true
+      });
     } catch (error) {
       console.error('Error liking photo:', error);
     }
@@ -140,29 +156,53 @@ const PhotoDetail = () => {
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
         <div className="md:flex">
           <div className="md:w-2/3 relative h-[500px]">
-            {!imageLoaded && (
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-12 h-12 border-t-4 border-primary-600 border-solid rounded-full animate-spin"></div>
-              </div>
-            )}
-            <img
-              src={photo.path}
-              alt={photo.title}
-              className={`
-                transition-opacity duration-300
-                ${imageOrientation === 'portrait' ? 'h-auto w-full max-h-[500px] object-contain' : ''}
-                ${imageOrientation === 'landscape' ? 'w-auto h-full max-w-full object-contain' : ''}
-                ${imageOrientation === 'square' ? 'max-h-[500px] max-w-full object-contain' : ''}
-                ${!imageLoaded ? 'opacity-0' : 'opacity-100'}
-              `}
-              style={{ 
-                position: 'absolute',
-                left: '50%',
-                top: '50%',
-                transform: 'translate(-50%, -50%)'
-              }}
-              onLoad={handleImageLoad}
-            />
+            <div className="absolute top-2 right-2 z-10 bg-black bg-opacity-50 text-white px-2 py-1 rounded text-sm flex items-center">
+              <MagnifyingGlassIcon className="h-4 w-4 mr-1" />
+              Click image to zoom
+            </div>
+            <div className="absolute inset-0">
+              {/* Only show the ProgressiveImage during loading */}
+              {!imageLoaded && (
+                <ProgressiveImage
+                  src={photo.path}
+                  // Generate a low-quality placeholder by adding a size parameter to the URL
+                  // This assumes your backend supports image resizing via URL parameters
+                  placeholderSrc={`${photo.path}?width=50`}
+                  alt={photo.title}
+                  style={{ 
+                    position: 'absolute',
+                    left: '0',
+                    top: '0',
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                    zIndex: 5
+                  }}
+                  onLoad={handleImageLoad}
+                />
+              )}
+              
+              {/* ZoomableImage is the main component that handles the zoom functionality */}
+              <ZoomableImage
+                src={photo.path}
+                alt={photo.title}
+                className={`
+                  ${imageOrientation === 'portrait' ? 'h-auto w-full max-h-[500px] object-contain' : ''}
+                  ${imageOrientation === 'landscape' ? 'w-auto h-full max-w-full object-contain' : ''}
+                  ${imageOrientation === 'square' ? 'max-h-[500px] max-w-full object-contain' : ''}
+                `}
+                style={{ 
+                  position: 'absolute',
+                  left: '50%',
+                  top: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  zIndex: 10,
+                  width: '100%',
+                  height: '100%'
+                }}
+                onLoad={handleImageLoad}
+              />
+            </div>
           </div>
           <div className="md:w-1/3 p-6 dark:text-white">
             {isEditing ? (

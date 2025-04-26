@@ -2,11 +2,18 @@
   "users": [
     {
       "id": "1234567890",
-      "username": "testuser",
-      "email": "test@example.com",
+      "username": "admin",
+      "email": "david@hinkley.ca",
       "password": "$2a$10$dUL7Kc/u0EYUbJ8dOEgX/OOp448YTxxTKW3UCk5TqaHLHJ31yaM7C",
       "isAdmin": true,
       "createdAt": "2025-04-08T17:56:56.074Z"
+    },
+    {
+      "id": "1745647300148",
+      "username": "davidhinkley",
+      "email": "mail@hinkley.ca",
+      "password": "$2a$10$CeGy05ez.sw5CGzeZFUfBe16mrOmDBpd4lMfLOCHZ9bM8uKXAFfJ2",
+      "createdAt": "2025-04-26T06:01:40.148Z"
     }
   ],
   "photos": [
@@ -17,7 +24,7 @@
       "category": "family",
       "path": "/uploads/photo-1744132159400-913071229.jpg",
       "filename": "photo-1744132159400-913071229.jpg",
-      "likes": 3,
+      "likes": 1,
       "userId": "1234567890",
       "uploadDate": "2025-04-08T17:56:56.075Z",
       "attribution": "",
@@ -30,7 +37,7 @@
       "category": "family",
       "path": "/uploads/photo-1744132200008-535632274.jpg",
       "filename": "photo-1744132200008-535632274.jpg",
-      "likes": 16,
+      "likes": 1,
       "userId": "1234567890",
       "uploadDate": "2025-04-07T17:56:56.075Z",
       "attribution": "",
@@ -43,7 +50,7 @@
       "category": "family",
       "path": "/uploads/photo-1744132289007-188091196.jpg",
       "filename": "photo-1744132289007-188091196.jpg",
-      "likes": 8,
+      "likes": 1,
       "userId": "1234567890",
       "uploadDate": "2025-04-06T17:56:56.075Z",
       "attribution": "",
@@ -56,11 +63,11 @@
       "category": "family",
       "path": "/uploads/photo-1744132331538-227908911.jpg",
       "filename": "photo-1744132331538-227908911.jpg",
-      "likes": 18,
+      "likes": 0,
       "userId": "1234567890",
       "uploadDate": "2025-04-05T17:56:56.075Z",
       "attribution": "",
-      "updatedAt": "2025-04-08T22:27:17.618Z"
+      "updatedAt": "2025-04-16T04:25:57.917Z"
     },
     {
       "id": "5",
@@ -69,7 +76,7 @@
       "category": "family",
       "path": "/uploads/photo-1744132409789-244498993.jpg",
       "filename": "photo-1744132409789-244498993.jpg",
-      "likes": 16,
+      "likes": 0,
       "userId": "1234567890",
       "uploadDate": "2025-04-04T17:56:56.075Z",
       "attribution": "",
@@ -82,7 +89,7 @@
       "category": "family",
       "path": "/uploads/photo-1744132461913-415511779.jpg",
       "filename": "photo-1744132461913-415511779.jpg",
-      "likes": 6,
+      "likes": 1,
       "userId": "1234567890",
       "uploadDate": "2025-04-03T17:56:56.075Z",
       "attribution": "",
@@ -95,11 +102,56 @@
       "category": "family",
       "path": "/uploads/photo-1744132588432-346054202.jpg",
       "filename": "photo-1744132588432-346054202.jpg",
-      "likes": 13,
+      "likes": 1,
       "userId": "1234567890",
       "uploadDate": "2025-04-02T17:56:56.075Z",
       "attribution": "",
       "updatedAt": "2025-04-08T22:28:25.917Z"
+    },
+    {
+      "id": "1745411015728",
+      "title": "Penguin",
+      "description": "Penguin in grass.",
+      "category": "nature",
+      "attribution": "",
+      "filename": "photo-1745411015720-718176011.jpg",
+      "path": "/uploads/photo-1745411015720-718176011.jpg",
+      "userId": "1234567890",
+      "uploadDate": "2025-04-23T12:23:35.728Z",
+      "likes": 1,
+      "updatedAt": "2025-04-23T12:24:04.015Z"
+    }
+  ],
+  "userLikes": [
+    {
+      "userId": "1234567890",
+      "photoId": "2",
+      "timestamp": "2025-04-16T03:28:08.832Z"
+    },
+    {
+      "userId": "1234567890",
+      "photoId": "1",
+      "timestamp": "2025-04-16T03:28:10.381Z"
+    },
+    {
+      "userId": "1234567890",
+      "photoId": "3",
+      "timestamp": "2025-04-16T04:05:18.383Z"
+    },
+    {
+      "userId": "1234567890",
+      "photoId": "6",
+      "timestamp": "2025-04-16T04:05:21.927Z"
+    },
+    {
+      "userId": "1234567890",
+      "photoId": "7",
+      "timestamp": "2025-04-16T04:05:25.971Z"
+    },
+    {
+      "userId": "1234567890",
+      "photoId": "1745411015728",
+      "timestamp": "2025-04-23T12:23:50.081Z"
     }
   ]
 }

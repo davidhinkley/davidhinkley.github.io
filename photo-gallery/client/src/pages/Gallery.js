@@ -1,37 +1,74 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import PhotoGrid from '../components/photos/PhotoGrid';
 import PhotoFilter from '../components/photos/PhotoFilter';
+import { PhotoGridSkeleton } from '../components/ui/SkeletonLoader';
 import { useAuth } from '../context/AuthContext';
+import useInfiniteScroll from '../hooks/useInfiniteScroll';
 
 const Gallery = () => {
-  const { currentUser } = useAuth();
+  const { currentUser, isAuthenticated } = useAuth();
   const [photos, setPhotos] = useState([]);
   const [filteredPhotos, setFilteredPhotos] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [hasMorePhotos, setHasMorePhotos] = useState(true);
+  const PHOTOS_PER_PAGE = 12;
+
+  // Function to fetch photos with pagination
+  const fetchPhotos = useCallback(async (pageNum = 1) => {
+    try {
+      setLoading(true);
+      // In a real API, you would have pagination parameters
+      // For this example, we'll simulate pagination by slicing the data
+      const res = await axios.get('/api/photos');
+      const allPhotos = res.data;
+      
+      // Extract unique categories (only on first load)
+      if (pageNum === 1) {
+        const uniqueCategories = [...new Set(allPhotos.map(photo => photo.category))];
+        setCategories(uniqueCategories);
+      }
+      
+      // Simulate pagination
+      const start = 0;
+      const end = pageNum * PHOTOS_PER_PAGE;
+      const paginatedPhotos = allPhotos.slice(start, end);
+      
+      // Check if we've reached the end
+      const hasMore = paginatedPhotos.length < allPhotos.length;
+      
+      setPhotos(paginatedPhotos);
+      setHasMorePhotos(hasMore);
+      setLoading(false);
+      
+      return hasMore;
+    } catch (error) {
+      console.error('Error fetching photos:', error);
+      setLoading(false);
+      return false;
+    }
+  }, []);
+
+  // Load more photos when scrolling
+  const loadMorePhotos = useCallback(async (nextPage) => {
+    if (!hasMorePhotos) return false;
+    return await fetchPhotos(nextPage);
+  }, [fetchPhotos, hasMorePhotos]);
+
+  // Initialize infinite scroll
+  const { isFetching } = useInfiniteScroll(loadMorePhotos, {
+    threshold: 300,
+    initialPage: 1,
+    enabled: !loading && hasMorePhotos && !selectedCategory && !searchTerm
+  });
 
   useEffect(() => {
-    const fetchPhotos = async () => {
-      try {
-        const res = await axios.get('/api/photos');
-        setPhotos(res.data);
-        
-        // Extract unique categories
-        const uniqueCategories = [...new Set(res.data.map(photo => photo.category))];
-        setCategories(uniqueCategories);
-        
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching photos:', error);
-        setLoading(false);
-      }
-    };
-
     fetchPhotos();
-  }, []);
+  }, [fetchPhotos]);
 
   useEffect(() => {
     // Filter photos based on category and search term
@@ -63,19 +100,40 @@ const Gallery = () => {
   };
 
   const handleLike = async (id) => {
+    if (!isAuthenticated) {
+      alert('Please log in to like photos');
+      return;
+    }
+    
+    // Find the photo in our state
+    const photo = photos.find(p => p.id === id);
+    
+    // If already liked, don't do anything
+    if (photo && photo.liked) {
+      return;
+    }
+    
     try {
       const res = await axios.post(`/api/photos/${id}/like`);
       
       // Update both photos arrays
       setPhotos(
         photos.map((photo) =>
-          photo.id === id ? { ...photo, likes: res.data.likes } : photo
+          photo.id === id ? { 
+            ...photo, 
+            likes: res.data.likes,
+            liked: true
+          } : photo
         )
       );
       
       setFilteredPhotos(
         filteredPhotos.map((photo) =>
-          photo.id === id ? { ...photo, likes: res.data.likes } : photo
+          photo.id === id ? { 
+            ...photo, 
+            likes: res.data.likes,
+            liked: true
+          } : photo
         )
       );
     } catch (error) {
@@ -110,9 +168,7 @@ const Gallery = () => {
       />
 
       {loading ? (
-        <div className="flex justify-center py-12">
-          <div className="w-12 h-12 border-t-4 border-primary-600 border-solid rounded-full animate-spin"></div>
-        </div>
+        <PhotoGridSkeleton count={12} />
       ) : (
         <>
           <div className="mb-4 text-dark-text-secondary">

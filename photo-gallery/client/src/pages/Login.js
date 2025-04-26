@@ -7,13 +7,13 @@ const Login = () => {
   const { login } = useAuth();
   
   const [formData, setFormData] = useState({
-    email: '',
+    identifier: '',
     password: ''
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   
-  const { email, password } = formData;
+  const { identifier, password } = formData;
   
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,7 +25,7 @@ const Login = () => {
     setError(null);
     
     try {
-      await login({ email, password });
+      await login({ identifier, password });
       navigate('/gallery');
     } catch (error) {
       setError(error.message || 'Invalid credentials');
@@ -46,14 +46,14 @@ const Login = () => {
       <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-md overflow-hidden">
         <div className="p-6">
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-              Email
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="identifier">
+              Username or Email
             </label>
             <input
-              type="email"
-              id="email"
-              name="email"
-              value={email}
+              type="text"
+              id="identifier"
+              name="identifier"
+              value={identifier}
               onChange={handleChange}
               className="input"
               required

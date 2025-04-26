@@ -60,7 +60,32 @@ const auth = (req, res, next) => {
 router.get('/', async (req, res) => {
   try {
     const photos = global.db.photos;
-    res.json(photos);
+    
+    // Check if user has liked any photos (if authenticated)
+    let userId = null;
+    const token = req.header('x-auth-token');
+    
+    if (token) {
+      try {
+        const decoded = jwt.verify(token, JWT_SECRET);
+        userId = decoded.id;
+      } catch (err) {
+        // Invalid token, but we'll still return photos without liked status
+      }
+    }
+    
+    // If user is authenticated and userLikes exists, mark photos as liked
+    let photosWithLikedStatus = photos;
+    if (userId && global.db.userLikes) {
+      photosWithLikedStatus = photos.map(photo => {
+        const liked = global.db.userLikes.some(
+          like => like.userId === userId && like.photoId === photo.id
+        );
+        return { ...photo, liked };
+      });
+    }
+    
+    res.json(photosWithLikedStatus);
   } catch (error) {
     console.error('Get photos error:', error);
     res.status(500).json({ message: 'Server error' });
@@ -76,7 +101,30 @@ router.get('/:id', async (req, res) => {
       return res.status(404).json({ message: 'Photo not found' });
     }
     
-    res.json(photo);
+    // Check if user has liked this photo (if authenticated)
+    let liked = false;
+    const token = req.header('x-auth-token');
+    
+    if (token) {
+      try {
+        const decoded = jwt.verify(token, JWT_SECRET);
+        const userId = decoded.id;
+        
+        // Check if userLikes array exists and if user has liked this photo
+        if (global.db.userLikes) {
+          liked = global.db.userLikes.some(
+            like => like.userId === userId && like.photoId === req.params.id
+          );
+        }
+      } catch (err) {
+        // Invalid token, but we'll still return the photo without liked status
+      }
+    }
+    
+    res.json({
+      ...photo,
+      liked
+    });
   } catch (error) {
     console.error('Get photo error:', error);
     res.status(500).json({ message: 'Server error' });
@@ -201,6 +249,34 @@ router.post('/:id/like', auth, async (req, res) => {
       return res.status(404).json({ message: 'Photo not found' });
     }
     
+    const userId = req.user.id;
+    const photoId = req.params.id;
+    
+    // Initialize userLikes array if it doesn't exist
+    if (!global.db.userLikes) {
+      global.db.userLikes = [];
+    }
+    
+    // Check if user has already liked this photo
+    const existingLike = global.db.userLikes.find(
+      like => like.userId === userId && like.photoId === photoId
+    );
+    
+    if (existingLike) {
+      // User has already liked this photo
+      return res.json({ 
+        likes: global.db.photos[photoIndex].likes,
+        alreadyLiked: true
+      });
+    }
+    
+    // Add user like to the database
+    global.db.userLikes.push({
+      userId,
+      photoId,
+      timestamp: new Date()
+    });
+    
     // Increment likes
     global.db.photos[photoIndex].likes += 1;
     
@@ -209,7 +285,10 @@ router.post('/:id/like', auth, async (req, res) => {
       global.saveDbState();
     }
     
-    res.json({ likes: global.db.photos[photoIndex].likes });
+    res.json({ 
+      likes: global.db.photos[photoIndex].likes,
+      alreadyLiked: true
+    });
   } catch (error) {
     console.error('Like photo error:', error);
     res.status(500).json({ message: 'Server error' });

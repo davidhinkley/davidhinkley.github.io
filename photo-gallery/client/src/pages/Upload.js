@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { CloudArrowUpIcon } from '@heroicons/react/24/outline';
+import imageCompression from 'browser-image-compression';
 
 const Upload = () => {
   const navigate = useNavigate();
@@ -13,26 +14,65 @@ const Upload = () => {
   });
   const [showAttribution, setShowAttribution] = useState(false);
   const [file, setFile] = useState(null);
+  const [originalFile, setOriginalFile] = useState(null);
   const [preview, setPreview] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [compressionInfo, setCompressionInfo] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleFileChange = (e) => {
+  const handleFileChange = async (e) => {
     const selectedFile = e.target.files[0];
     
     if (selectedFile) {
-      setFile(selectedFile);
+      setOriginalFile(selectedFile);
       
-      // Create preview
+      // Create preview immediately for better UX
       const reader = new FileReader();
       reader.onloadend = () => {
         setPreview(reader.result);
       };
       reader.readAsDataURL(selectedFile);
+      
+      try {
+        // Set compression options
+        const options = {
+          maxSizeMB: 1, // Max file size in MB
+          maxWidthOrHeight: 1920, // Max width/height in pixels
+          useWebWorker: true,
+          initialQuality: 0.8, // Initial quality setting (0-1)
+        };
+        
+        // Show loading state
+        setLoading(true);
+        
+        // Compress the image
+        const compressedFile = await imageCompression(selectedFile, options);
+        
+        // Calculate compression ratio
+        const originalSizeMB = selectedFile.size / (1024 * 1024);
+        const compressedSizeMB = compressedFile.size / (1024 * 1024);
+        const savingsPercent = ((originalSizeMB - compressedSizeMB) / originalSizeMB * 100).toFixed(1);
+        
+        setCompressionInfo({
+          originalSize: originalSizeMB.toFixed(2),
+          compressedSize: compressedSizeMB.toFixed(2),
+          savings: savingsPercent
+        });
+        
+        // Set the compressed file for upload
+        setFile(compressedFile);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error compressing image:', error);
+        // Fallback to original file if compression fails
+        setFile(selectedFile);
+        setError('Image compression failed. The original image will be used.');
+        setLoading(false);
+      }
     }
   };
 
@@ -95,11 +135,19 @@ const Upload = () => {
                     alt="Preview"
                     className="max-h-64 mx-auto"
                   />
+                  {compressionInfo && (
+                    <div className="mt-2 text-sm text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 p-2 rounded">
+                      <p>Original: {compressionInfo.originalSize} MB</p>
+                      <p>Compressed: {compressionInfo.compressedSize} MB</p>
+                      <p>Saved: {compressionInfo.savings}% of original size</p>
+                    </div>
+                  )}
                 </div>
               ) : (
                 <div className="text-gray-500 mb-4">
                   <CloudArrowUpIcon className="h-12 w-12 mx-auto text-gray-400" />
                   <p>Drag and drop your photo here, or click to select</p>
+                  <p className="text-xs mt-2">Images will be automatically compressed for optimal performance</p>
                 </div>
               )}
               <input

@@ -5,6 +5,7 @@ const extract = require('extract-zip');
 const { promisify } = require('util');
 const copyFile = promisify(fs.copyFile);
 const mkdir = promisify(fs.mkdir);
+const { execSync } = require('child_process');
 
 // Backup directory - using relative path from the application root
 const backupDir = path.join(__dirname, '../backups');
@@ -25,36 +26,45 @@ async function createBackup(name = '') {
     // Create timestamp for backup name
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
     const backupName = name ? `${timestamp}_${name}` : timestamp;
-    const backupPath = path.join(backupDir, `${backupName}.zip`);
+    const backupPath = path.join(backupDir, `${backupName}.tar.xz`);
     
-    // Create a file to stream archive data to
-    const output = fs.createWriteStream(backupPath);
-    const archive = archiver('zip', {
-      zlib: { level: 9 } // Maximum compression
-    });
+    // Create a temporary directory for the backup files
+    const tempDir = path.join(__dirname, '../temp_backup');
+    if (fs.existsSync(tempDir)) {
+      fs.rmSync(tempDir, { recursive: true, force: true });
+    }
+    fs.mkdirSync(tempDir, { recursive: true });
     
-    // Listen for all archive data to be written
-    const archiveFinished = new Promise((resolve, reject) => {
-      output.on('close', () => resolve());
-      archive.on('error', err => reject(err));
-    });
-    
-    // Pipe archive data to the file
-    archive.pipe(output);
-    
-    // Add database snapshot
+    // Create the database snapshot
     const dbSnapshot = JSON.stringify(global.db, null, 2);
-    archive.append(dbSnapshot, { name: 'db.json' });
+    fs.writeFileSync(path.join(tempDir, 'db.json'), dbSnapshot);
     
-    // Add uploads directory
+    // Create uploads directory in temp
+    const tempUploadsDir = path.join(tempDir, 'uploads');
+    fs.mkdirSync(tempUploadsDir, { recursive: true });
+    
+    // Copy uploads to temp directory
     const uploadsDir = path.join(__dirname, '../uploads');
-    archive.directory(uploadsDir, 'uploads');
+    const uploadFiles = fs.readdirSync(uploadsDir);
+    for (const file of uploadFiles) {
+      if (file !== '.gitkeep') {
+        await copyFile(
+          path.join(uploadsDir, file),
+          path.join(tempUploadsDir, file)
+        );
+      }
+    }
     
-    // Finalize the archive
-    await archive.finalize();
-    await archiveFinished;
+    // Create tar.xz archive using system tar command
+    execSync(`tar -cJf "${backupPath}" -C "${tempDir}" .`);
     
-    console.log(`Backup created: ${backupPath} (${archive.pointer()} bytes)`);
+    // Get file size
+    const stats = fs.statSync(backupPath);
+    
+    // Clean up temp directory
+    fs.rmSync(tempDir, { recursive: true, force: true });
+    
+    console.log(`Backup created: ${backupPath} (${stats.size} bytes)`);
     return backupPath;
   } catch (error) {
     console.error('Backup creation failed:', error);
@@ -68,7 +78,10 @@ async function createBackup(name = '') {
  */
 async function listBackups() {
   try {
-    const files = fs.readdirSync(backupDir).filter(file => file.endsWith('.zip'));
+    // Get both .zip and .tar.xz files to support both formats during transition
+    const files = fs.readdirSync(backupDir).filter(file => 
+      file.endsWith('.zip') || file.endsWith('.tar.xz')
+    );
     
     return files.map(file => {
       const filePath = path.join(backupDir, file);
@@ -101,8 +114,17 @@ async function restoreBackup(backupPath) {
     }
     fs.mkdirSync(tempDir, { recursive: true });
     
-    // Extract the backup
-    await extract(backupPath, { dir: tempDir });
+    // Extract the backup based on file extension
+    if (backupPath.endsWith('.zip')) {
+      // Use extract-zip for zip files
+      await extract(backupPath, { dir: tempDir });
+    } else if (backupPath.endsWith('.tar.xz')) {
+      // Use tar-stream for tar.xz files
+      const { execSync } = require('child_process');
+      execSync(`tar -xf "${backupPath}" -C "${tempDir}"`);
+    } else {
+      throw new Error(`Unsupported backup format: ${path.extname(backupPath)}`);
+    }
     
     // Read the database snapshot
     const dbSnapshot = fs.readFileSync(path.join(tempDir, 'db.json'), 'utf8');

@@ -117,32 +117,36 @@ const BackupManagerNew = () => {
           <p className="italic text-gray-700 dark:text-gray-300">No backups found. Create your first backup above.</p>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full border-collapse">
+            <table className="w-full border-collapse table-fixed">
               <thead>
                 <tr className="border-b border-gray-200 dark:border-gray-700">
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Name</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Created</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Size</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Actions</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider w-[40%]">Name</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider w-[25%]">Created</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider w-[15%]">Size</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider w-[20%]">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                 {backups.map((backup) => (
                   <tr key={backup.id}>
-                    <td className="px-4 py-3 whitespace-nowrap text-gray-900 dark:text-white">{backup.id}</td>
+                    <td className="px-4 py-3 whitespace-nowrap text-gray-900 dark:text-white max-w-[250px] overflow-hidden">
+                      <div className="truncate" title={backup.id}>
+                        {backup.id.length > 30 ? `${backup.id.substring(0, 30)}...` : backup.id}
+                      </div>
+                    </td>
                     <td className="px-4 py-3 whitespace-nowrap text-gray-900 dark:text-white">{backup.createdFormatted}</td>
                     <td className="px-4 py-3 whitespace-nowrap text-gray-900 dark:text-white">{backup.sizeFormatted}</td>
-                    <td className="px-4 py-3 whitespace-nowrap text-gray-900 dark:text-white">
-                      <div className="flex space-x-2">
+                    <td className="px-4 py-3 whitespace-nowrap text-gray-900 dark:text-white min-w-[150px]">
+                      <div className="flex space-x-4">
                         <button 
                           onClick={() => handleRestoreBackup(backup.id)}
-                          className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                          className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium"
                         >
                           Restore
                         </button>
                         <button 
                           onClick={() => handleDeleteBackup(backup.id)}
-                          className="text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-300"
+                          className="text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-300 font-medium"
                         >
                           Delete
                         </button>

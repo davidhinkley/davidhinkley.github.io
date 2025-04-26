@@ -61,10 +61,13 @@ router.post('/register', async (req, res) => {
 // Login user
 router.post('/login', async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { identifier, password } = req.body;
     
-    // Find user
-    const user = global.db.users.find(user => user.email === email);
+    // Find user by email or username
+    const user = global.db.users.find(user => 
+      user.email === identifier || user.username === identifier
+    );
+    
     if (!user) {
       return res.status(400).json({ message: 'Invalid credentials' });
     }

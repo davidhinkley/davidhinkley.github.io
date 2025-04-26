@@ -29,14 +29,19 @@ router.get('/', auth, async (req, res) => {
     const backups = await listBackups();
     
     // Format the response
-    const formattedBackups = backups.map(backup => ({
-      id: backup.filename.replace('.zip', ''),
-      filename: backup.filename,
-      created: backup.created,
-      createdFormatted: new Date(backup.created).toLocaleString(),
-      size: backup.size,
-      sizeFormatted: formatBytes(backup.size)
-    }));
+    const formattedBackups = backups.map(backup => {
+      // Extract ID by removing file extension (.zip or .tar.xz)
+      const id = backup.filename.replace(/\.(zip|tar\.xz)$/, '');
+      
+      return {
+        id: id,
+        filename: backup.filename,
+        created: backup.created,
+        createdFormatted: new Date(backup.created).toLocaleString(),
+        size: backup.size,
+        sizeFormatted: formatBytes(backup.size)
+      };
+    });
     
     res.json(formattedBackups);
   } catch (error) {
@@ -77,8 +82,11 @@ router.post('/restore/:id', auth, async (req, res) => {
     const backups = await listBackups();
     const backupId = req.params.id;
     
-    // Find the backup with the matching ID
-    const backup = backups.find(b => b.filename.replace('.zip', '') === backupId);
+    // Find the backup with the matching ID (handling both .zip and .tar.xz extensions)
+    const backup = backups.find(b => {
+      const id = b.filename.replace(/\.(zip|tar\.xz)$/, '');
+      return id === backupId;
+    });
     
     if (!backup) {
       return res.status(404).json({ message: 'Backup not found' });
@@ -107,8 +115,11 @@ router.delete('/:id', auth, async (req, res) => {
     const backups = await listBackups();
     const backupId = req.params.id;
     
-    // Find the backup with the matching ID
-    const backup = backups.find(b => b.filename.replace('.zip', '') === backupId);
+    // Find the backup with the matching ID (handling both .zip and .tar.xz extensions)
+    const backup = backups.find(b => {
+      const id = b.filename.replace(/\.(zip|tar\.xz)$/, '');
+      return id === backupId;
+    });
     
     if (!backup) {
       return res.status(404).json({ message: 'Backup not found' });

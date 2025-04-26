@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { TrashIcon } from '@heroicons/react/24/outline';
 
 const Profile = () => {
-  const { currentUser } = useAuth();
+  const { currentUser, isAuthenticated } = useAuth();
   const [userPhotos, setUserPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
   
@@ -27,11 +27,28 @@ const Profile = () => {
   }, [currentUser.id]);
   
   const handleLike = async (id) => {
+    if (!isAuthenticated) {
+      alert('Please log in to like photos');
+      return;
+    }
+    
+    // Find the photo in our state
+    const photo = userPhotos.find(p => p.id === id);
+    
+    // If already liked, don't do anything
+    if (photo && photo.liked) {
+      return;
+    }
+    
     try {
       const res = await axios.post(`/api/photos/${id}/like`);
       setUserPhotos(
         userPhotos.map((photo) =>
-          photo.id === id ? { ...photo, likes: res.data.likes } : photo
+          photo.id === id ? { 
+            ...photo, 
+            likes: res.data.likes,
+            liked: true
+          } : photo
         )
       );
     } catch (error) {

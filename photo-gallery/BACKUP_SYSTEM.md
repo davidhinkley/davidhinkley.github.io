@@ -94,13 +94,13 @@ You'll be shown a list of available backups to choose from. Select the backup yo
 The backup system works by:
 
 1. Saving the in-memory database state to a JSON file
-2. Creating a ZIP archive containing:
+2. Creating a compressed TAR archive (tar.xz) containing:
    - The database JSON file
    - All uploaded images from the `uploads` directory
-3. Storing the ZIP archive in the `backups` directory with a timestamp
+3. Storing the TAR.XZ archive in the `backups` directory with a timestamp
 
 When restoring, the system:
-1. Extracts the ZIP archive to a temporary directory
+1. Extracts the archive (ZIP or TAR.XZ) to a temporary directory
 2. Loads the database state from the JSON file
 3. Copies the uploaded images back to the `uploads` directory
 
@@ -146,7 +146,7 @@ The web interface allows you to:
 
 ## Backup File Location
 
-Backups are stored in the `server/backups` directory. Each backup is a ZIP file with a timestamp and optional name.
+Backups are stored in the `server/backups` directory. Each backup is a compressed TAR file (.tar.xz) with a timestamp and optional name.
 
 ## Backup Rotation
 

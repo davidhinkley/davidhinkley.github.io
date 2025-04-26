@@ -4,7 +4,8 @@
   "description": "Galleria - An elegant photo gallery application with React and Node.js",
   "main": "index.js",
   "scripts": {
-    "start": "bash start.sh",
+    "start": "node start-app.js",
+    "dev": "node start-app.js",
     "server": "cd server && npm run dev",
     "server-prod": "cd server && npm run start",
     "server-clean": "cd server && npm run dev-clean",

@@ -66,12 +66,20 @@ const Navbar = () => {
                     {currentUser?.username || 'Profile'}
                   </Link>
                   {currentUser?.isAdmin && (
-                    <Link
-                      to="/backups"
-                      className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700"
-                    >
-                      Backups
-                    </Link>
+                    <>
+                      <Link
+                        to="/backups"
+                        className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700"
+                      >
+                        Backups
+                      </Link>
+                      <Link
+                        to="/users"
+                        className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700"
+                      >
+                        Users
+                      </Link>
+                    </>
                   )}
                   <button
                     onClick={handleLogout}
@@ -203,13 +211,22 @@ const Navbar = () => {
                   {currentUser?.username || 'Profile'}
                 </Link>
                 {currentUser?.isAdmin && (
-                  <Link
-                    to="/backups"
-                    className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Backups
-                  </Link>
+                  <>
+                    <Link
+                      to="/backups"
+                      className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Backups
+                    </Link>
+                    <Link
+                      to="/users"
+                      className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Users
+                    </Link>
+                  </>
                 )}
                 <button
                   onClick={handleLogout}

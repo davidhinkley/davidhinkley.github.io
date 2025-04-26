@@ -53,7 +53,7 @@ const PhotoCard = ({ photo, onLike, onDelete, currentUserId }) => {
   return (
     <div className="card group bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden transition-colors duration-200">
       <div className="relative overflow-hidden h-64">
-        <Link to={`/photos/${id}`}>
+        <Link to={`/photos/${id}`} className="block w-full h-full cursor-pointer z-10 relative">
           {!imageError ? (
             <img
               src={path}
@@ -88,20 +88,17 @@ const PhotoCard = ({ photo, onLike, onDelete, currentUserId }) => {
             </div>
           )}
         </Link>
-        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-          <Link
-            to={`/photos/${id}`}
-            className="btn btn-primary px-4 py-2 rounded-md bg-primary-600 text-white hover:bg-primary-700"
-          >
+        <Link to={`/photos/${id}`} className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100 z-20">
+          <span className="btn btn-primary px-4 py-2 rounded-md bg-primary-600 text-white">
             View Details
-          </Link>
-        </div>
+          </span>
+        </Link>
         
         {/* Trash can icon for photo owner */}
         {isOwner && onDelete && (
           <button
             onClick={handleDelete}
-            className="absolute top-2 right-2 p-2 bg-red-600 bg-opacity-70 hover:bg-opacity-100 text-white rounded-full transition-opacity duration-200 opacity-0 group-hover:opacity-100 z-10"
+            className="absolute top-2 right-2 p-2 bg-red-600 bg-opacity-70 hover:bg-opacity-100 text-white rounded-full transition-opacity duration-200 opacity-0 group-hover:opacity-100 z-30"
             title="Delete photo"
           >
             <TrashIcon className="h-5 w-5" />

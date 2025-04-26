@@ -64,10 +64,14 @@ async function list() {
     console.log(chalk.blue('--------------------------------------------------'));
     
     backups.forEach((backup, index) => {
+      // Determine the format for display
+      const format = backup.filename.endsWith('.zip') ? 'ZIP' : 'TAR.XZ';
+      
       console.log(
         `${chalk.green(index + 1)}. ${backup.filename}\n` +
         `   Created: ${formatDate(backup.created)}\n` +
-        `   Size: ${formatBytes(backup.size)}\n`
+        `   Size: ${formatBytes(backup.size)}\n` +
+        `   Format: ${format}\n`
       );
     });
   } catch (error) {

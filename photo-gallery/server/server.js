@@ -7,6 +7,7 @@ const fs = require('fs');
 const authRoutes = require('./routes/auth');
 const photoRoutes = require('./routes/photos');
 const backupRoutes = require('./routes/backups');
+const userRoutes = require('./routes/users');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -23,6 +24,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/auth', authRoutes);
 app.use('/api/photos', photoRoutes);
 app.use('/api/backups', backupRoutes);
+app.use('/api/users', userRoutes);
 
 // Default route
 app.get('/', (req, res) => {
@@ -49,8 +51,8 @@ const createDefaultUser = async () => {
   
   return {
     id: '1234567890',
-    username: 'testuser',
-    email: 'test@example.com',
+    username: 'admin',
+    email: 'david@hinkley.ca',
     password: hashedPassword,
     isAdmin: true,
     createdAt: new Date()
@@ -123,7 +125,7 @@ const initializeDb = async (uploadsDirectory) => {
   };
   
   global.db = db;
-  console.log('Default test user created:', defaultUser.email);
+  console.log('Default admin user created:', defaultUser.username, '/', defaultUser.email);
   console.log('Photos added from uploads directory:', photos.length);
 };
 

@@ -20,6 +20,7 @@ const config = {
 // Log the current working directory and script location for debugging
 console.log(`Current working directory: ${process.cwd()}`);
 console.log(`Script location: ${__dirname}`);
+console.log(`Using tar.xz format for backups`);
 
 /**
  * Log a message to console and log file
@@ -64,7 +65,7 @@ async function rotateBackups() {
     // Get all backups
     const backups = await listBackups();
     
-    // Filter scheduled backups
+    // Filter scheduled backups (both .zip and .tar.xz formats)
     const scheduledBackups = backups.filter(backup => 
       backup.filename.includes(config.namePrefix)
     );

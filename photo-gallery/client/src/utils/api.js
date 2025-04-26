@@ -35,6 +35,15 @@ const getBaseUrl = () => {
     return `http://${hostname}:${defaultPort}`;
   }
   
+  // For GitHub Pages deployment, we need to use a remote API server
+  // Since GitHub Pages can only serve static content, we need to point to an external API
+  if (hostname.includes('github.io')) {
+    // Replace this URL with your actual API server URL when deploying
+    // For demo purposes on GitHub Pages, we'll use a mock API or disable backend features
+    console.log('GitHub Pages detected - API calls will be mocked or disabled');
+    return 'https://mock-api-server.example.com'; // Replace with your actual API server if available
+  }
+  
   // In production, use the same origin (hostname) with the API on the same domain
   // This works when the client is served by the same server or through a reverse proxy
   return window.location.origin;

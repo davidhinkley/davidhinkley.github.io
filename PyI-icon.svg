@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+      <rect x="3" y="3" width="122" height="122" rx="26"
+            fill="#0d1117" stroke="#30363d" stroke-width="4"/>
+
+      <!-- "PyI" — y nudged left to overlap the P -->
+      <text x="64" y="84" font-family="DejaVu Sans, Verdana, sans-serif"
+            font-size="58" font-weight="bold" text-anchor="middle">
+            <tspan fill="#58a6ff">P</tspan><tspan dx="-6" fill="#f0883e">y</tspan><tspan
+                  dx="-8" font-size="48" fill="#e6edf3">I</tspan>
+            </text>
+      </svg>

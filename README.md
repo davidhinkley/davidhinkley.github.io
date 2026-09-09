@@ -1,17 +1,6 @@
 # 🐍 David's Python Courses
 
 ### *Interactive Python courses that run entirely in your browser — no install, no account, no fear.*
-
-<p align="center">
-  <img src="Pyf-icon.svg" width="96" height="96" alt="Pyf course icon">
-  <img src="PyI-icon.svg" width="96" height="96" alt="PyI course icon">
-</p>
-
-<p align="center">
-  <b>Read a little. Run a lot. Break things on purpose. Build real programs.</b><br>
-  Python 3.12 · Runnable code boxes · Built-in console · Quizzes · Exercises with solutions · Guided projects
-</p>
-
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.12-blue?style=flat-square&logo=python" alt="Python 3.12">
   <img src="https://img.shields.io/badge/Runs-100%25_in_browser-green?style=flat-square" alt="Runs in browser">
@@ -20,21 +9,15 @@
   <img src="https://img.shields.io/badge/Privacy-nothing_leaves_your_tab-lightgrey?style=flat-square" alt="Private">
 </p>
 
-Live site: **https://davidhinkley.github.io**
-
-| Course | Start here | Guide |
-|---|---|---|
-| 🐍 **Python Foundations** (beginner) | https://davidhinkley.github.io/python-course.html | [web page](https://davidhinkley.github.io/python-course-guide.html) · [`python-course.md`](python-course.md) |
-| 🐍 **Python Intermediate** (next step) | https://davidhinkley.github.io/python-intermediate.html | [web page](https://davidhinkley.github.io/python-intermediate-guide.html) · [`python-intermediate.md`](python-intermediate.md) |
-
----
-
 ## ⚡ Quick start
+Click here [https://davidhinkley.github.io](https://davidhinkley.github.io).
+## ⚡ Direct approach
+ Beginner: [https://davidhinkley.github.io/python-course.html](https://davidhinkley.github.io/python-course.html) 
+ Intermediate: [https://davidhinkley.github.io/python-intermediate.html](https://davidhinkley.github.io/python-intermediate.html)
 
-Zero install. Open either link above in any modern browser (Firefox, Chrome, Edge, Safari — Windows, macOS, Linux, Chromebook) — or locally, open the matching `.html` file from this repo.
+***That's it.*** 
 
-That's it. You get:
-
+You get:
 - Runnable / editable code boxes (100 in Foundations + 7 references, 139 in Intermediate + 29 references/transcripts)
 - Built-in Python console (REPL) sharing state with the lesson boxes
 - Quizzes with instant explanations (6 each, 30 questions each), exercises with hidden solutions (19 + 21), guided projects (5 + 3 capstones)
@@ -47,27 +30,24 @@ The workflow of both courses: **Read → Predict → Run → Tinker → Break �
 ---
 
 ## 📁 Site files
-
 | File | Role |
 |---|---|
-| `index.html` | **Landing page** for https://davidhinkley.github.io — introduces and links both courses. |
-| `python-course.html` | **The whole Foundations course.** Content + browser runtime in one self-contained file. |
-| `python-course-guide.html` | **Foundations guide as a web page** ([live](https://davidhinkley.github.io/python-course-guide.html)) — converted from `python-course.md`, styled for remote visitors. |
-| `Pyf-icon.svg` | Foundations icon (`Pyf` badge). Favicon / brand icon for `python-course.html` and `index.html`. |
+| `README.md` | This file. |
+| `index.html` | Landing page |
+| `python-course.html` | Foundations course + browser runtime. |
+| `Pyf-icon.svg` | Foundations icon and favicon. |
 | `python-course.md` | Foundations guide source — the friendly manual for the beginner course. |
 | `python-intermediate.html` | **The whole Intermediate course.** Content + browser runtime in one self-contained file. |
-| `python-intermediate-guide.html` | **Intermediate guide as a web page** ([live](https://davidhinkley.github.io/python-intermediate-guide.html)) — converted from `python-intermediate.md`, styled for remote visitors. |
-| `PyI-icon.svg` | Intermediate icon (`PyI` badge). Favicon / brand icon for `python-intermediate.html` and `index.html`. |
+| `PyI-icon.svg` | Intermediate icon and favicon. |
 | `python-intermediate.md` | Intermediate guide — the friendly manual for the follow-on course. |
-| `README.md` | This file — the combined guide GitHub displays. |
 
-> Do not edit the `.html` files unless you mean to change a course itself — learner edits and progress are stored separately in the browser.
+> *Do not edit any `.html` files unless you mean to change a course itself — your course edits and progress are stored separately in the browser.*
 
 ---
 
 ## 📗 Python Foundations — beginner course
 
-**David's Python Foundations** is a complete Python 3 course packed into [`python-course.html`](https://davidhinkley.github.io/python-course.html). Open it and you get a real interpreter, a textbook, a lab, a quiz master, and a patient debugger — all in one tab. Full details: [`python-course.md`](python-course.md).
+**David's Python Foundations** is a complete Python 3 course packed into [`python-course.html`](https://davidhinkley.github.io/python-course.html). Open it and you get a real interpreter, a textbook, a lab, a quiz master, and a patient debugger — all in one browser tab.
 
 > If you've never written a line of code, start here. You don't read about Python here. **You drive it from line one.**
 
@@ -76,11 +56,9 @@ print("Hello, World!")
 print("I am learning Python inside my own browser 🎉")
 # 👆 That box is live in the course. Press ▶ Run. Change it. Run it again.
 ```
-
+> Or find a section you need to learn and start there. Whatever you like.
 ### What you'll learn
-
 From `print()` to fetching live data from an API.
-
 | Module | You'll learn | You'll build |
 |---|---|---|
 | **0 · Start Here** | How the course works, the console / REPL, blocks & indentation | Your first program + console superpowers |
@@ -157,30 +135,6 @@ Three lanes from Appendix C: **Web** (serve Capstone C → HTTP → Flask/FastAP
 
 > *You have three tested programs now. Go build the fourth.* 🐍
 
----
-
-## 🗺️ Suggested path
-
-1. **Foundations** — never coded? Start here. Finish with five working programs and debugging confidence.
-2. **Intermediate diagnostic** (Lesson 0.2) — 10 tasks from memory. 7+/10: continue. Below that, redo the prescribed Foundations modules first.
-3. **Intermediate** — browser for concepts, terminal for `venv`, real files, and `pytest`. Graduate with three tested portfolio programs.
-
----
-
-## 🖥️ How the pages work
-
-- First load needs internet once to fetch the Python engine (~10 MB, then cached). After that: **fully local, works offline, nothing leaves your tab.**
-- `input()` shows as a small pop-up dialog (**Cancel = `EOFError`**, handled in-course on purpose).
-- Files live in a **sandboxed in-browser filesystem** and vanish on tab close. Code is identical to desktop Python.
-- True `while True:` with no `break` freezes the tab — reload, your code is saved.
-- Supported browsers: current Firefox, Chrome, Edge, Safari on Windows, macOS, Linux, Chromebook.
-
-## 🔒 Privacy & requirements
-
-- **Requirements:** Any modern browser. Intermediate terminal work needs Python 3.9+ and a `venv` (Lesson 0.3).
-- **Privacy:** No telemetry, no account, no server. Progress lives in your browser (`localStorage`).
-- **Offline:** Yes, after first engine download. Only the live-API lessons need internet on purpose.
-
 ## 🛠️ Troubleshooting
 
 - **Engine won't load / boxes read-only:** check internet on first load, then reload.
@@ -197,6 +151,5 @@ Three lanes from Appendix C: **Web** (serve Capstone C → HTTP → Flask/FastAP
 ---
 
 <p align="center">
-  <b>David's Python Courses</b> · single-HTML courses · Python 3.12 in your tab via Pyodide · no data ever leaves your browser<br>
-  Start with <a href="https://davidhinkley.github.io/python-course.html">Foundations</a>, continue with <a href="https://davidhinkley.github.io/python-intermediate.html">Intermediate</a>. Happy hacking!
+Happy hacking!
 </p>

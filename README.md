@@ -24,8 +24,8 @@ Live site: **https://davidhinkley.github.io**
 
 | Course | Start here | Guide |
 |---|---|---|
-| 🐍 **Python Foundations** (beginner) | https://davidhinkley.github.io/python-course.html | [`python-course.md`](python-course.md) |
-| 🐍 **Python Intermediate** (next step) | https://davidhinkley.github.io/python-intermediate.html | [`python-intermediate.md`](python-intermediate.md) |
+| 🐍 **Python Foundations** (beginner) | https://davidhinkley.github.io/python-course.html | [web page](https://davidhinkley.github.io/python-course-guide.html) · [`python-course.md`](python-course.md) |
+| 🐍 **Python Intermediate** (next step) | https://davidhinkley.github.io/python-intermediate.html | [web page](https://davidhinkley.github.io/python-intermediate-guide.html) · [`python-intermediate.md`](python-intermediate.md) |
 
 ---
 
@@ -52,9 +52,11 @@ The workflow of both courses: **Read → Predict → Run → Tinker → Break �
 |---|---|
 | `index.html` | **Landing page** for https://davidhinkley.github.io — introduces and links both courses. |
 | `python-course.html` | **The whole Foundations course.** Content + browser runtime in one self-contained file. |
+| `python-course-guide.html` | **Foundations guide as a web page** ([live](https://davidhinkley.github.io/python-course-guide.html)) — converted from `python-course.md`, styled for remote visitors. |
 | `Pyf-icon.svg` | Foundations icon (`Pyf` badge). Favicon / brand icon for `python-course.html` and `index.html`. |
-| `python-course.md` | Foundations guide — the friendly manual for the beginner course. |
+| `python-course.md` | Foundations guide source — the friendly manual for the beginner course. |
 | `python-intermediate.html` | **The whole Intermediate course.** Content + browser runtime in one self-contained file. |
+| `python-intermediate-guide.html` | **Intermediate guide as a web page** ([live](https://davidhinkley.github.io/python-intermediate-guide.html)) — converted from `python-intermediate.md`, styled for remote visitors. |
 | `PyI-icon.svg` | Intermediate icon (`PyI` badge). Favicon / brand icon for `python-intermediate.html` and `index.html`. |
 | `python-intermediate.md` | Intermediate guide — the friendly manual for the follow-on course. |
 | `README.md` | This file — the combined guide GitHub displays. |

@@ -39,7 +39,6 @@ nav.links a:hover{color:var(--accent);border-color:var(--accent)}
 .cards{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:30px}
 @media (max-width:860px){.cards{grid-template-columns:1fr}}
 .card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
-.card .shot{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top left;background:#000;border-bottom:1px solid var(--border)}
 .card .body{padding:22px 24px 24px;display:flex;flex-direction:column;gap:12px;flex:1}
 .card .title-row{display:flex;align-items:center;gap:12px}
 .card .title-row img{width:48px;height:48px;border-radius:12px;flex:0 0 48px}
@@ -99,9 +98,6 @@ code{font:.88em var(--mono);background:var(--bg3);border:1px solid var(--border)
   <div class="cards">
 
     <article class="card" aria-labelledby="t-found">
-      <a href="python-course.html" aria-label="Open Python Foundations course">
-        <img class="shot" src="screenshot-foundations.png" alt="Screenshot of David's Python Foundations as it first appears in Firefox — sidebar, welcome lesson, and Python loading dialog with the Pyf icon" width="1280" height="800" loading="lazy">
-      </a>
       <div class="body">
         <div class="title-row">
           <img src="Pyf-icon.svg" alt="Pyf course icon" width="48" height="48">
@@ -124,9 +120,6 @@ code{font:.88em var(--mono);background:var(--bg3);border:1px solid var(--border)
     </article>
 
     <article class="card" aria-labelledby="t-inter">
-      <a href="python-intermediate.html" aria-label="Open Python Intermediate course">
-        <img class="shot" src="screenshot-intermediate.png" alt="Screenshot of David's Python Intermediate as it first appears in Firefox — sidebar, bridge-in lesson, and Python loading dialog with the PyI icon" width="1280" height="800" loading="lazy">
-      </a>
       <div class="body">
         <div class="title-row">
           <img src="PyI-icon.svg" alt="PyI course icon" width="48" height="48">

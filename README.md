@@ -1,4 +1,4 @@
-# 🐍 David's Python Courses
+# 🐍 <span style="color:#58a6ff">P</span><span style="color:#d29922">y</span>thon <span style="color:#e6edf3">C</span>ourses
 
 ### *Interactive Python courses that run entirely in your browser — no install, no account, no fear.*
 <p align="center">
@@ -45,9 +45,9 @@ The workflow of both courses: **Read → Predict → Run → Tinker → Break �
 
 ---
 
-## 📗 Python Foundations — beginner course
+## 📗 <span style="color:#58a6ff">P</span><span style="color:#d29922">y</span>thon <span style="color:#e6edf3">F</span>oundations — beginner course
 
-**David's Python Foundations** is a complete Python 3 course packed into [`python-course.html`](https://davidhinkley.github.io/python-course.html). Open it and you get a real interpreter, a textbook, a lab, a quiz master, and a patient debugger — all in one browser tab.
+**<span style="color:#58a6ff">P</span><span style="color:#d29922">y</span>thon <span style="color:#e6edf3">F</span>oundations** is a complete Python 3 course packed into [`python-course.html`](https://davidhinkley.github.io/python-course.html). Open it and you get a real interpreter, a textbook, a lab, a quiz master, and a patient debugger — all in one browser tab.
 
 > If you've never written a line of code, start here. You don't read about Python here. **You drive it from line one.**
 
@@ -88,9 +88,9 @@ Live code boxes everywhere, Predict-then-Run habit, deliberate 🐞 crash boxes 
 
 ---
 
-## 📘 Python Intermediate — the next course
+## 📘 <span style="color:#58a6ff">P</span><span style="color:#f0883e">y</span>thon <span style="color:#e6edf3">I</span>ntermediate — the next course
 
-**David's Python Intermediate** assumes ~100-line Foundations programs and graduates you to **200–400-line tested, CLI-driven programs** from the standard library plus `pytest`. Full details: [`python-intermediate.md`](python-intermediate.md).
+**<span style="color:#58a6ff">P</span><span style="color:#f0883e">y</span>thon <span style="color:#e6edf3">I</span>ntermediate** assumes ~100-line Foundations programs and graduates you to **200–400-line tested, CLI-driven programs** from the standard library plus `pytest`. Full details: [`python-intermediate.md`](python-intermediate.md).
 
 > **Prerequisite:** variables, loops, lists/dicts, functions, basic classes, files + `try/except`. Not sure? Lesson 0.2 is a 10-task entry diagnostic — under 7/10 and it tells you exactly which Foundations modules to redo.
 
